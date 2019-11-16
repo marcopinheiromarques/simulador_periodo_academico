@@ -1,0 +1,38 @@
+﻿#dv_menu_superior_materias {
+    margin-top: 50px;
+}
+
+#dv_tbl_materias {
+    margin-top: 30px;
+}
+
+#tbl_materias thead th {
+    position: sticky;
+    top: 0;
+}
+
+.cpo_codigo_materia{
+    min-width: 70px;
+    max-width: 70px;
+}
+
+.cpo_nome_materia {
+    min-width: 250px;
+    max-width: 250px;
+}
+
+.cpo_peso{
+    min-width: 150px;
+}
+
+#dv_peso_prova_1{
+    margin-top: 5px;
+}
+
+#dv_peso_prova_2{
+    margin-top: 5px;
+}
+
+#dv_peso_prova_3{
+    margin-top: 5px;
+}

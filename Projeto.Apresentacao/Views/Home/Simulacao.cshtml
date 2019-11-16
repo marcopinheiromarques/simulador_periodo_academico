@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "Simulacao";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/Content/Simulacao/simulacao.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/Scripts/Simulacao/simulacao.js"></script>
+}
+
+
+<div id="conteudo_simulacao" class="container-fluid" ng-app="appSimulacao" ng-controller="controllerSimulacao">
+
+    <h2>Simulação</h2>
+
+    <div id="dv_menu_superior_simulacao" class="row">
+        <div id="btn_simular" class="col-md-2">
+            <button id="btn_inserir_simulacao" class="btn btn-primary" ng-click="simular()">
+                Simular
+            </button>
+        </div>
+        <div class="col-md-10">
+            <strong>{{mensagem}}</strong>
+        </div>
+    </div>
+
+    <div id="dv_tbl_simulacao" class="row">
+        <div class="col-md-12 table-responsive">
+            <table id="tbl_simulacao" class="table table-bordered table-hover table-sm" ng-init="consultar()">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="cpo_nome_aluno">Nome Aluno</th>
+                        <th class="cpo_nome_turma">Turma</th>
+                        <th class="cpo_situacao_periodo_academico">Situação Período Acadêmico</th>
+                        <th class="cpo_situacao_periodo_academico">Detalhe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="s in simulacao">
+                        <td class="cpo_nome_aluno">{{s.NomeAluno}}</td>
+                        <td class="cpo_nome_turma">{{s.NomeTurma}}</td>
+                        <td class="cpo_situacao_periodo_academico">{{s.Situacao}}</td>
+                        <td class="cpo_detalhes_provas">
+
+                            <button class="btn btn-success"
+                                    data-toggle="modal" data-target="#ModalDadosProvasAlunos"
+                                    ng-click="consultarPorId(s.IdAluno)">
+                                Provas
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @*Modais*@
+    <div class="modal fade bd-example-modal-xl" id="ModalDadosProvasAlunos" tabindex="-1" role="dialog" aria-labelledby="TituloModalDadosProvasAlunos" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TituloModalDadosProvasAlunos">Detalhamento das Provas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-12 table-responsive">
+
+                            <table id="tbl_provas_aluno" class="table table-bordered table-hover table-sm">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="cpo_materia">Matéria</th>
+                                        <th class="cpo_nota">Prova 1</th>
+                                        <th class="cpo_nota">Prova 2</th>
+                                        <th class="cpo_nota">Prova 3</th>
+                                        <th class="cpo_nota">Prova Final</th>
+                                        <th class="cpo_nota">Média Ponderada</th>
+                                        <th class="cpo_nota">Média Aritmética</th>
+                                        <th class="cpo_situacao">Situação</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="d in detalhes">
+                                        <td class="cpo_materia">{{d.NomeMateria}}</td>
+                                        <td class="cpo_nota">{{d.Prova1}}</td>
+                                        <td class="cpo_nota">{{d.Prova2}}</td>
+                                        <td class="cpo_nota">{{d.Prova3}}</td>
+                                        <td class="cpo_nota">{{d.ProvaFinal}}</td>
+                                        <td class="cpo_nota">{{d.MediaPonderada}}</td>
+                                        <td class="cpo_nota">{{d.MediaAritmetica}}</td>
+                                        <td class="cpo_situacao">{{d.Situacao}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

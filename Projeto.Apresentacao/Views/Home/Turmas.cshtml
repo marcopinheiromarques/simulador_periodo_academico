@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Turmas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/Content/Turmas/turmas.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/Scripts/Turmas/turmas.js"></script>
+}
+
+
+    <div id="conteudo_turmas" class="container-fluid" ng-app="appTurma" ng-controller="cadastroTurmas">
+
+        <h2>Turmas</h2>
+
+        <div id="dv_menu_superior_turmas" class="row">
+            <div id="btn_turmas" class="col-md-2">
+                <button id="btn_inserir_turmas" class="btn btn-primary"
+                        data-toggle="modal" data-target="#ModalDadosTurmas">
+                    Inserir Turmas
+                </button>
+            </div>
+            <div class="col-md-10">
+                <strong>{{mensagem}}</strong>
+            </div>
+        </div>
+
+        <div id="dv_tbl_turmas" class="row">
+            <div class="col-md-12 table-responsive">
+                <table id="tbl_turmas" class="table table-bordered table-hover table-sm" ng-init="consultar()">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="cpo_codigo_turmas">Código</th>
+                            <th class="cpo_nome_turmas">Nome</th>
+                            <th class="cpo_alunos_turmas">Alunos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="t in turmas">
+                            <td class="cpo_codigo_turmas">{{t.IdTurma}}</td>
+                            <td class="cpo_nome_turmas">{{t.Nome}}</td>
+                            <td class="cpo_alunos_turmas">
+                                <button class="btn btn-success"
+                                        data-toggle="modal" data-target="#ModalDadosAlunos"
+                                        ng-click="consultarPorId(t.IdTurma)">
+                                    Alunos
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        @*Modais*@
+        <div class="modal fade" id="ModalDadosTurmas" tabindex="-1" role="dialog" aria-labelledby="TituloModalDadosTurmas" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="TituloModalDadosTurmas">Cadastro de Turmas</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row" id="dv_qtd_turmas">
+                            <div class="col-md-6">
+                                <label for="qtd_turmas">Quantidade de turmas:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input id="qtd_turmas" name="qtd_turmas" type="number" class="form-control" min="1" ng-model="model.qtd_turmas" />
+                            </div>
+                        </div>
+
+                        <div class="row" id="dv_qtd_alunos">
+                            <div class="col-md-6">
+                                <label for="qtd_alunos">Alunos por turma:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input id="qtd_alunos" name="qtd_alunos" type="number" class="form-control" min="1" ng-model="model.qtd_alunos_turma" />
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" ng-click="inserir()" data-dismiss="modal">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="ModalDadosAlunos" tabindex="-1" role="dialog" aria-labelledby="TituloModalDadosAlunos" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="TituloModalDadosAlunos">Alunos da Turma</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">                        
+
+                        <ul ng-repeat="a in alunos">
+                            <li>{{a.IdAluno}} - {{a.Nome}}</li>
+                        </ul>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

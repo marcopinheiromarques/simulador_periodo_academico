@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Simulador de Período Acadêmico</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Layout/layout.css" rel="stylesheet" />
+
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div id="menu_principal">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="@Url.Content("~/Home/Index")">Período Acadêmico</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#textoNavbar" aria-controls="textoNavbar" aria-expanded="false" aria-label="Alterna navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="textoNavbar">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="@Url.Content("~/Home/Index")">Home <span class="sr-only">(Página atual)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Content("~/Home/Turmas")">Turmas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Content("~/Home/Materias")">Matérias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Content("~/Home/Simulacao")">Simulação</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                        @ViewBag.TituloJanela
+                    </span>
+                </div>
+            </nav>
+        </div>        
+
+        <div id="conteudo_pagina">
+            @RenderBody()
+        </div>
+
+    </div>
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+
+    @RenderSection("Scripts", false)
+</body>
+</html>

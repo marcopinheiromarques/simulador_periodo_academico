@@ -1,0 +1,27 @@
+﻿#dv_menu_superior_turmas{
+    margin-top: 50px;
+}
+
+#dv_tbl_turmas {
+    margin-top: 30px;
+}
+
+#tbl_turmas thead th {
+    position: sticky;
+    top: 0;
+}
+
+.cpo_codigo_turmas{
+    min-width: 70px;
+    max-width: 70px;
+}
+
+.cpo_nome_turmas {
+    min-width: 250px;
+    max-width: 250px;
+}
+
+
+#dv_qtd_alunos {
+    margin-top: 10px;
+}
