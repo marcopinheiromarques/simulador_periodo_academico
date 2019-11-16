@@ -38,18 +38,23 @@ namespace Projeto.Apresentacao.Controllers
                 AlunoRepository                  alunoRep        = new AlunoRepository();
                 ISimulacaoPeriodoAcademico       simulador       = new SimulacaoPeriodoAcademico();
 
-                foreach (Aluno aluno in alunoRep.FindAll())
+                List<MateriaAluno> ma = materiaAlunoRep.FindAll();
+
+                if (ma.Count() > 0)
                 {
-                    SimulacaoConsultaViewModel sc    = new SimulacaoConsultaViewModel();
-                    Turma                      turma = turmaRep.FindById(aluno.IdTurma);
+                    foreach (Aluno aluno in alunoRep.FindAll())
+                    {
+                        SimulacaoConsultaViewModel sc = new SimulacaoConsultaViewModel();
+                        Turma turma = turmaRep.FindById(aluno.IdTurma);
 
-                    sc.IdAluno   = aluno.IdAluno;
-                    sc.NomeAluno = aluno.Nome;
-                    sc.NomeTurma = turma.Nome;
-                    sc.Situacao  = simulador.ObterSituacaoPeriodoAcademicoAluno(sc.IdAluno);
+                        sc.IdAluno = aluno.IdAluno;
+                        sc.NomeAluno = aluno.Nome;
+                        sc.NomeTurma = turma.Nome;
+                        sc.Situacao = simulador.ObterSituacaoPeriodoAcademicoAluno(sc.IdAluno);
 
-                    lista.Add(sc);
-                }
+                        lista.Add(sc);
+                    }
+                }             
 
 
                 return Json(lista, JsonRequestBehavior.AllowGet);
